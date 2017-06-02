@@ -5,7 +5,9 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.zy.mydemo.R;
 import com.zy.mydemo.base.BaseAdapter;
@@ -52,34 +54,16 @@ public class HomeAdapter<T> extends BaseAdapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof BaseViewHolder) {
-            TextView view = ((BaseViewHolder) holder).getView(R.id.tv_item_demo);
-            view.setText(mList.get(position).toString());
-        }
-    }
+    protected void bindData(BaseViewHolder holder, int position) {
+        TextView tv = holder.getView(R.id.tv_item_demo);
+        tv.setText(mList.get(position).toString());
+        LinearLayout root = holder.getView(R.id.ll_item_root);
+        root.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-
-    /**
-     * 添加数据
-     */
-    public void AddMoreData(List<T> list) {
-        mList.add(list);
-        notifyDataSetChanged();
-    }
-
-    /**
-     * 刷新数据
-     */
-    public void RefreshData(List<T> list) {
-        mList.clear();
-        mList.addAll(list);
-        notifyDataSetChanged();
-
-    }
-
-    public List<T> getList() {
-        return mList;
+            }
+        });
     }
 
 

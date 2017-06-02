@@ -49,10 +49,8 @@ public class BeiyongAdapter<T> extends BaseAdapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof BaseViewHolder) {
-            TextView tv = ((BaseViewHolder) holder).getView(R.id.tv_item_demo);
-            tv.setText(mList.get(position).toString());
-        }
+    protected void bindData(BaseViewHolder holder, int position) {
+        TextView tv = ((BaseViewHolder) holder).getView(R.id.tv_item_demo);
+        tv.setText(mList.get(position).toString());
     }
 }

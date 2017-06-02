@@ -8,7 +8,6 @@ import android.view.View;
 
 import com.zy.mydemo.R;
 import com.zy.mydemo.adapter.BeiyongAdapter;
-import com.zy.mydemo.adapter.HomeAdapter;
 import com.zy.mydemo.base.BaseFragment;
 
 import java.util.ArrayList;

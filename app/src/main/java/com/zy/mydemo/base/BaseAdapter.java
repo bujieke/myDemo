@@ -4,6 +4,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.zy.mydemo.R;
 
 import java.util.List;
 
@@ -49,6 +52,15 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter {
         this.mList = list;
         this.LayoutId = LayoutId;
     }
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof BaseViewHolder) {
+
+          bindData( (BaseViewHolder) holder,position);
+        }
+    }
+
+    protected abstract void bindData(BaseViewHolder holder, int position);
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -61,4 +73,29 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter {
         return mList.size();
     }
 
+    /**
+     * 加载更多数据
+     */
+    public void LoadMoreItemData(List<T> list) {
+        mList.addAll(list);
+        notifyDataSetChanged();
+    }
+
+    /**
+     * 加载更多数据
+     */
+    public void RefreshItemData(List<T> list) {
+        mList.clear();
+        mList.addAll(list);
+        notifyDataSetChanged();
+    }
+
+    /**
+     * 返回数据集合
+     *
+     * @return
+     */
+    public List<T> getList() {
+        return mList;
+    }
 }
