@@ -1,13 +1,18 @@
 package com.zy.mydemo.fragments;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
+import com.zy.mydemo.R;
+import com.zy.mydemo.adapter.BeiyongAdapter;
+import com.zy.mydemo.adapter.HomeAdapter;
 import com.zy.mydemo.base.BaseFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by  zy on 2017/6/1.
@@ -43,16 +48,34 @@ import com.zy.mydemo.base.BaseFragment;
  * //                  不见满街漂亮妹，哪个归得程序员？
  */
 public class BeiYongFragment extends BaseFragment {
+
+
+    private android.support.v7.widget.RecyclerView mRvHomeview;
+    private RecyclerView.LayoutManager layoutManager;
+    private DividerItemDecoration dividerItemDecoration;
+    private BeiyongAdapter<String> stringBeiyongAdapter;
+
+
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View getView(LayoutInflater inflater) {
+        View view = inflater.inflate(R.layout.fragment_home, null);
+        return view;
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        TextView textView = new TextView(mContext);
-        textView.setText("备用");
-        return textView;
+    protected void initData(View view) {
+        mRvHomeview = (RecyclerView) view.findViewById(R.id.rv_homeview);
+        layoutManager = new LinearLayoutManager(mContext);
+        dividerItemDecoration = new DividerItemDecoration(mContext, LinearLayoutManager.VERTICAL);
+        mRvHomeview.setLayoutManager(layoutManager);
+        mRvHomeview.addItemDecoration(dividerItemDecoration);
+        List<String> strings = new ArrayList<String>();
+
+        for (int i = 0; i < 900; i++) {
+            strings.add("备用第" + i + "项");
+        }
+        stringBeiyongAdapter = new BeiyongAdapter<>(strings, R.layout.item_home);
+        mRvHomeview.setAdapter(stringBeiyongAdapter);
     }
+
 }

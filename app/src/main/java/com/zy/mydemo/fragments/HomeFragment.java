@@ -1,14 +1,21 @@
 package com.zy.mydemo.fragments;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.util.Log;
+import android.graphics.Color;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
+import com.zy.mydemo.R;
+import com.zy.mydemo.adapter.HomeAdapter;
 import com.zy.mydemo.base.BaseFragment;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Created by  zy on 2017/6/1.
@@ -44,17 +51,53 @@ import com.zy.mydemo.base.BaseFragment;
  * //                  不见满街漂亮妹，哪个归得程序员？
  */
 public class HomeFragment extends BaseFragment {
+    private android.support.v7.widget.RecyclerView mRvHomeview;
+    private RecyclerView.LayoutManager layoutManager;
+    private DividerItemDecoration dividerItemDecoration;
+    private HomeAdapter<String> stringHomeAdapter;
+    private android.support.v4.widget.SwipeRefreshLayout mSwLayout;
+    private List<String> strings;
+
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View getView(LayoutInflater inflater) {
+        View view = inflater.inflate(R.layout.fragment_beiyong, null);
+        return view;
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        TextView textView = new TextView(mContext);
-        textView.setText("主页sdasdasdasdasdasdasdasdasda65s4d6a5s4d65a4s65d4a65s4d65a4s65d4a65s4d65a4s6d54a6s4d654a6s5d4a654sd65a4s56da222");
-        textView.setTextSize(55);
-        return textView;
+    protected void initData(View view) {
+        mRvHomeview = (RecyclerView) view.findViewById(R.id.rv_beiyongview);
+        mSwLayout = (SwipeRefreshLayout) view.findViewById(R.id.sw_layout);
+        layoutManager = new LinearLayoutManager(mContext);
+        dividerItemDecoration = new DividerItemDecoration(mContext, LinearLayoutManager.VERTICAL);
+        mRvHomeview.setLayoutManager(layoutManager);
+        mRvHomeview.addItemDecoration(dividerItemDecoration);
+        strings = new ArrayList<String>();
+        for (int i = 0; i < 3; i++) {
+            strings.add("初始" + i + "项");
+        }
+        stringHomeAdapter = new HomeAdapter<>(strings, R.layout.item_home);
+        mRvHomeview.setAdapter(stringHomeAdapter);
+        mSwLayout.setColorSchemeColors(Color.BLACK, Color.RED, Color.YELLOW);
+        mSwLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refresh();
+            }
+        });
     }
+
+    private void refresh() {
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mSwLayout.setRefreshing(false);
+
+            }
+        }, 3000);
+    }
+
+
 }

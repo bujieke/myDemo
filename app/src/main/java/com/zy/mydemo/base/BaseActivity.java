@@ -50,7 +50,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private RelativeLayout mRlContent;
     private Toolbar mToolbar;
     private ToolbarX mtoolbarX;
-    public Context mContext ;
+    public Context mContext;
 
 
     @Override
@@ -63,7 +63,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         View view = getLayoutInflater().inflate(getLayout(), mRlContent, false);
         mRlContent.addView(view);
         mtoolbarX = new ToolbarX(mToolbar, this);
-
         setTitle();
     }
 
@@ -75,11 +74,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                 mtoolbarX.setTitle(title);
             }
         }
-
-
     }
-
-    ;
 
     @Override
     public void startActivity(Intent intent) {

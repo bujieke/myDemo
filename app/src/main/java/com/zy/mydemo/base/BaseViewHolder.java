@@ -1,19 +1,14 @@
 package com.zy.mydemo.base;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.zy.mydemo.R;
-
+import java.util.HashMap;
 
 /**
- * Created by  zy on 2017/5/31.
+ * Created by  zy on 2017/6/2.
  * //                            _ooOoo_
  * //                           o8888888o
  * //                           88" . "88
@@ -45,43 +40,32 @@ import com.zy.mydemo.R;
  * //                  别人笑我忒疯癫，我笑自己命太贱；
  * //                  不见满街漂亮妹，哪个归得程序员？
  */
-public abstract class BaseFragment extends Fragment {
-    public Context mContext;
+public class BaseViewHolder extends RecyclerView.ViewHolder {
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        this.mContext = getActivity();
+    public HashMap<Integer, View> map;
+    public View mConvertView;
+
+    public BaseViewHolder(View itemView) {
+        super(itemView);
+        mConvertView = itemView;
+        if (map == null) {
+            map = new HashMap<Integer, View>();
+        }
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return getView(inflater);
+
+    public <T extends View> T getView(int viewId) {
+        View view = map.get(viewId);
+        if (view == null) {
+            view = mConvertView.findViewById(viewId);
+            map.put(viewId, view);
+        }
+        return (T) view;
+    }
+
+    public View getConvertView() {
+        return mConvertView;
     }
 
 
-
-    public abstract View getView(LayoutInflater inflater);
-
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        initData(view);
-    }
-
-    protected abstract void initData(View view);
-
-    @Override
-    public void startActivity(Intent intent) {
-        getActivity().startActivity(intent);
-        getActivity().overridePendingTransition(R.anim.anim_in_right_left, R.anim.anim_out_right_left); //切换动画
-    }
-
-    @Override
-    public void startActivityForResult(Intent intent, int requestCode) {
-        getActivity().startActivityForResult(intent, requestCode);
-        getActivity().overridePendingTransition(R.anim.anim_in_right_left, R.anim.anim_out_right_left); //切换动画
-    }
 }

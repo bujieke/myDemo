@@ -1,19 +1,14 @@
 package com.zy.mydemo.base;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.zy.mydemo.R;
-
+import java.util.List;
 
 /**
- * Created by  zy on 2017/5/31.
+ * Created by  zy on 2017/6/2.
  * //                            _ooOoo_
  * //                           o8888888o
  * //                           88" . "88
@@ -45,43 +40,25 @@ import com.zy.mydemo.R;
  * //                  别人笑我忒疯癫，我笑自己命太贱；
  * //                  不见满街漂亮妹，哪个归得程序员？
  */
-public abstract class BaseFragment extends Fragment {
-    public Context mContext;
+public abstract class BaseAdapter<T> extends RecyclerView.Adapter {
+    public List<T> mList;
+    private int LayoutId;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        this.mContext = getActivity();
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return getView(inflater);
-    }
-
-
-
-    public abstract View getView(LayoutInflater inflater);
-
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        initData(view);
-    }
-
-    protected abstract void initData(View view);
-
-    @Override
-    public void startActivity(Intent intent) {
-        getActivity().startActivity(intent);
-        getActivity().overridePendingTransition(R.anim.anim_in_right_left, R.anim.anim_out_right_left); //切换动画
+    public BaseAdapter(List<T> list, int LayoutId) {
+        super();
+        this.mList = list;
+        this.LayoutId = LayoutId;
     }
 
     @Override
-    public void startActivityForResult(Intent intent, int requestCode) {
-        getActivity().startActivityForResult(intent, requestCode);
-        getActivity().overridePendingTransition(R.anim.anim_in_right_left, R.anim.anim_out_right_left); //切换动画
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(LayoutId, parent, false);
+        return new BaseViewHolder(inflate);
     }
+
+    @Override
+    public int getItemCount() {
+        return mList.size();
+    }
+
 }

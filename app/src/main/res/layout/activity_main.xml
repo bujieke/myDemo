@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.zy.mydemo.MainActivity">
 
     <FrameLayout
 
         android:id="@+id/home_fl"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="9"
 
         />
 
@@ -22,9 +24,9 @@
     <RadioGroup
         android:id="@+id/home_rg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_alignParentBottom="true"
-
+        android:layout_weight="1.3"
         android:background="@color/AppThemeColor"
         android:orientation="horizontal"
         android:paddingTop="@dimen/space_xs">
@@ -67,9 +69,8 @@
             android:drawableTop="@drawable/bg_rg_beiyong_selector"
             android:gravity="center"
             android:text="备用"
-
             android:textColor="@drawable/textcolor_selector" />
     </RadioGroup>
 
 
-</RelativeLayout>
+</LinearLayout>
