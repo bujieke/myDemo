@@ -33,7 +33,7 @@
 
         <RadioButton
 
-            android:id="@+id/rb_home"
+            android:id="@+id/rb_business"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -42,9 +42,33 @@
             android:drawablePadding="@dimen/space_xs"
             android:drawableTop="@drawable/bg_rg_home_selector"
             android:gravity="center"
-            android:text="主页"
+            android:text="业务"
             android:textColor="@drawable/textcolor_selector" />
 
+
+        <RadioButton
+            android:id="@+id/rb_task"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawablePadding="@dimen/space_xs"
+            android:drawableTop="@drawable/bg_rg_beiyong_selector"
+            android:gravity="center"
+            android:text="任务"
+            android:textColor="@drawable/textcolor_selector" />
+
+        <RadioButton
+            android:id="@+id/rb_customer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawablePadding="@dimen/space_xs"
+            android:drawableTop="@drawable/bg_rg_beiyong_selector"
+            android:gravity="center"
+            android:text="客户"
+            android:textColor="@drawable/textcolor_selector" />
 
         <RadioButton
             android:id="@+id/rb_mine"
@@ -56,19 +80,6 @@
             android:drawableTop="@drawable/bg_rg_mine_selector"
             android:gravity="center"
             android:text="我的"
-            android:textColor="@drawable/textcolor_selector" />
-
-
-        <RadioButton
-            android:id="@+id/rb_beiyong"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawablePadding="@dimen/space_xs"
-            android:drawableTop="@drawable/bg_rg_beiyong_selector"
-            android:gravity="center"
-            android:text="备用"
             android:textColor="@drawable/textcolor_selector" />
     </RadioGroup>
 

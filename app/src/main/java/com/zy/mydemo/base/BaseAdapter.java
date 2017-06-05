@@ -100,7 +100,8 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter {
     public void RefreshItemData(List<T> list) {
         mList.clear();
         mList.addAll(list);
-        notifyDataSetChanged();
+        this.notifyDataSetChanged();
+
     }
 
     /**
@@ -118,6 +119,5 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter {
     public interface OnItemClickLitener {
         void onItemClick(View view, int position);
 
-        //  void onItemLongClick(View view, int position);
     }
 }

@@ -1,38 +1,33 @@
 package com.zy.mydemo.activitys;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.zy.mydemo.MainActivity;
 import com.zy.mydemo.R;
+import com.zy.mydemo.base.BaseActivity;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
 
-    private AutoCompleteTextView mEmailView;
+    private EditText mAccountView;
     private EditText mPasswordView;
-    private View mProgressView;
-    private View mLoginFormView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        getToolbar().setTitle("登录").setDisplayHomeAsUpEnabled(false);
+        mAccountView = (EditText) findViewById(R.id.account);
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -53,17 +48,18 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
+
+    }
+
+    @Override
+    public int getLayout() {
+        return R.layout.activity_login;
     }
 
 
     private void attemptLogin() {
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
-        String account = mEmailView.getText().toString();
+        String account = mAccountView.getText().toString();
         String password = mPasswordView.getText().toString();
-
         boolean cancel = false;
         View focusView = null;
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
@@ -71,17 +67,15 @@ public class LoginActivity extends AppCompatActivity {
             cancel = true;
         }
         if (TextUtils.isEmpty(account)) {
-            focusView = mEmailView;
+            focusView = mAccountView;
             cancel = true;
         }
 
         if (cancel) {
             focusView.requestFocus();
         } else {
-
+            showPro();
             login(account, password);
-            showProgress(true);
-
         }
     }
 
@@ -92,6 +86,14 @@ public class LoginActivity extends AppCompatActivity {
      * @param password
      */
     private void login(String account, String password) {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                opeanActivity(MainActivity.class, "主页");
+                finish();
+            }
+        }, 3000);
+
     }
 
 
@@ -104,38 +106,6 @@ public class LoginActivity extends AppCompatActivity {
     private boolean isPasswordValid(String password) {
         return password.length() > 4;
     }
-
-    /**
-     * Shows the progress UI and hides the login form.
-     */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-    private void showProgress(final boolean show) {
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-            mLoginFormView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-                }
-            });
-
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mProgressView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-                }
-            });
-        } else {
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-        }
-    }
-
 
 }
 

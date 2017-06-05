@@ -41,8 +41,19 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
  */
 public class RecyclerViewTool {
     public static int RVTYPE_GENERAL = 1; //类似于listview 的用法
-    public static int RVTYPE_GRID = 2; //GRIDVIEW 的用法
+    public static int RVTYPE_GRID_HORIZONTAL = 2; //GRIDVIEW 的用法
+    public static int RVTYPE_GRID_VERTICAL = 3; //GRIDVIEW 的用法
 
+    /**
+     * 设置列数
+     *
+     * @param column
+     */
+    public void setColumn(int column) {
+        this.column = column;
+    }
+
+    private int column = 3;
     private Context mContext;
     private RecyclerView mView;
 
@@ -57,25 +68,24 @@ public class RecyclerViewTool {
      * @param RecycleType
      */
     public void initRecyle(int RecycleType) {
-        RecyclerView.LayoutManager layoutManager = null;
         switch (RecycleType) {
             case 1:
-                layoutManager = new LinearLayoutManager(mContext);
-                mView.addItemDecoration(new DividerItemDecoration(mContext,LinearLayoutManager.VERTICAL));
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(mContext);
+                mView.addItemDecoration(new DividerItemDecoration(mContext, LinearLayoutManager.VERTICAL));
                 mView.setLayoutManager(layoutManager);
                 break;
             case 2:
-                layoutManager = new StaggeredGridLayoutManager(5,StaggeredGridLayoutManager.HORIZONTAL);
+                RecyclerView.LayoutManager layoutManager2 = new StaggeredGridLayoutManager(column, StaggeredGridLayoutManager.HORIZONTAL);
                 DividerGridItemDecoration dividerGridItemDecoration = new DividerGridItemDecoration(mContext);
                 mView.addItemDecoration(dividerGridItemDecoration);
-                mView.setLayoutManager(layoutManager);
+                mView.setLayoutManager(layoutManager2);
                 break;
-
-
+            case 3:
+                RecyclerView.LayoutManager layoutManager3 = new StaggeredGridLayoutManager(column, StaggeredGridLayoutManager.VERTICAL);
+                DividerGridItemDecoration dividerGridItemDecoration2 = new DividerGridItemDecoration(mContext);
+                mView.addItemDecoration(dividerGridItemDecoration2);
+                mView.setLayoutManager(layoutManager3);
+                break;
         }
-//        mView.addItemDecoration(new RecyclerViewDivider(mContext, LinearLayoutManager.VERTICAL));
-
-
-
     }
 }

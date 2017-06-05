@@ -1,21 +1,17 @@
-package com.zy.mydemo.fragments;
+package com.zy.mydemo.adapter;
 
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import com.zy.mydemo.R;
-import com.zy.mydemo.adapter.BeiyongAdapter;
-import com.zy.mydemo.base.BaseFragment;
-import com.zy.mydemo.ui.RecyclerViewTool;
+import com.zy.mydemo.base.BaseActivity;
+import com.zy.mydemo.base.BaseAdapter;
+import com.zy.mydemo.base.BaseViewHolder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by  zy on 2017/6/1.
+ * Created by  zy on 2017/6/5.
  * //                            _ooOoo_
  * //                           o8888888o
  * //                           88" . "88
@@ -47,32 +43,15 @@ import java.util.List;
  * //                  别人笑我忒疯癫，我笑自己命太贱；
  * //                  不见满街漂亮妹，哪个归得程序员？
  */
-public class BeiYongFragment extends BaseFragment {
-
-
-    private android.support.v7.widget.RecyclerView mRvHomeview;
-    private RecyclerView.LayoutManager layoutManager;
-    private DividerItemDecoration dividerItemDecoration;
-    private BeiyongAdapter<String> stringBeiyongAdapter;
-
-
-    @Override
-    public View getView(LayoutInflater inflater) {
-        View view = inflater.inflate(R.layout.fragment_home, null);
-        return view;
+public class QueryAdapter extends BaseAdapter {
+    public QueryAdapter(List list, int LayoutId) {
+        super(list, LayoutId);
     }
 
     @Override
-    protected void initData(View view) {
-        mRvHomeview = (RecyclerView) view.findViewById(R.id.rv_homeview);
-        RecyclerViewTool recyclerViewTool = new RecyclerViewTool(mRvHomeview, mContext);
-        recyclerViewTool.initRecyle(RecyclerViewTool.RVTYPE_GRID);
-        List<String> strings = new ArrayList<String>();
-        for (int i = 0; i < 20; i++) {
-            strings.add("备用第" + i + "项");
-        }
-        stringBeiyongAdapter = new BeiyongAdapter<>(strings, R.layout.item_home);
-        mRvHomeview.setAdapter(stringBeiyongAdapter);
+    protected void bindData(BaseViewHolder holder, int position) {
+        TextView view = holder.getView(R.id.tv_item_query);
+        String s = (String) mList.get(position);
+        view.setText( s);
     }
-
 }

@@ -1,13 +1,6 @@
 package com.zy.mydemo.adapter;
 
-import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.zy.mydemo.R;
 import com.zy.mydemo.base.BaseAdapter;

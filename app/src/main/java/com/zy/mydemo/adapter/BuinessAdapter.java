@@ -1,12 +1,15 @@
-package com.zy.mydemo.base;
+package com.zy.mydemo.adapter;
 
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
+import android.widget.TextView;
 
-import java.util.HashMap;
+import com.zy.mydemo.R;
+import com.zy.mydemo.base.BaseAdapter;
+import com.zy.mydemo.base.BaseViewHolder;
+
+import java.util.List;
 
 /**
- * Created by  zy on 2017/6/2.
+ * Created by  zy on 2017/6/5.
  * //                            _ooOoo_
  * //                           o8888888o
  * //                           88" . "88
@@ -38,28 +41,14 @@ import java.util.HashMap;
  * //                  别人笑我忒疯癫，我笑自己命太贱；
  * //                  不见满街漂亮妹，哪个归得程序员？
  */
-public class BaseViewHolder extends RecyclerView.ViewHolder {
-
-    public HashMap<Integer, View> map;
-
-
-    public BaseViewHolder(View itemView) {
-        super(itemView);
-
-        if (map == null) {
-            map = new HashMap<Integer, View>();
-        }
+public class BuinessAdapter<String> extends BaseAdapter {
+    public BuinessAdapter(List<String> list, int LayoutId) {
+        super(list, LayoutId);
     }
 
-
-    public <T extends View> T getView(int viewId) {
-        View view = map.get(viewId);
-        if (view == null) {
-            view = itemView.findViewById(viewId);
-            map.put(viewId, view);
-        }
-        return (T) view;
+    @Override
+    protected void bindData(BaseViewHolder holder, int position) {
+        TextView tv = holder.getView(R.id.tv_item_buiness);
+        tv.setText(mList.get(position).toString());
     }
-
-
 }

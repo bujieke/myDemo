@@ -12,9 +12,10 @@ import android.widget.TabHost;
 import com.zy.mydemo.activitys.Dialogdemo;
 import com.zy.mydemo.activitys.LoginActivity;
 import com.zy.mydemo.base.BaseActivity;
-import com.zy.mydemo.fragments.BeiYongFragment;
-import com.zy.mydemo.fragments.HomeFragment;
+import com.zy.mydemo.fragments.CustomerFragment;
+import com.zy.mydemo.fragments.BuinessFragment;
 import com.zy.mydemo.fragments.MineFragment;
+import com.zy.mydemo.fragments.TaskFragment;
 
 public class MainActivity extends BaseActivity {
     private Class fragment[];
@@ -24,6 +25,9 @@ public class MainActivity extends BaseActivity {
     private RadioButton mRbMine;
     private RadioButton mRbBeiyong;
     private boolean MenuIsShow = true;
+    private RadioButton mRbBusiness;
+    private RadioButton mRbTask;
+    private RadioButton mRbCustomer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +45,12 @@ public class MainActivity extends BaseActivity {
 
 
     private void initView() {
-        fragment = new Class[]{HomeFragment.class, MineFragment.class, BeiYongFragment.class};
+        fragment = new Class[]{BuinessFragment.class, TaskFragment.class, CustomerFragment.class, MineFragment.class};
         mHomeTablehost = (FragmentTabHost) findViewById(R.id.home_tablehost);
         mHomeRg = (RadioGroup) findViewById(R.id.home_rg);
-        mRbHome = (RadioButton) findViewById(R.id.rb_home);
-        mRbMine = (RadioButton) findViewById(R.id.rb_mine);
-        mRbBeiyong = (RadioButton) findViewById(R.id.rb_beiyong);
+        mRbBusiness = (RadioButton) findViewById(R.id.rb_business);
+        mRbTask = (RadioButton) findViewById(R.id.rb_task);
+        mRbCustomer = (RadioButton) findViewById(R.id.rb_customer);
         initTableHost();
     }
 
@@ -67,20 +71,27 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 switch (checkedId) {
-                    case R.id.rb_home:
+                    case R.id.rb_business:
+
                         MenuIsShow = true;
                         mHomeTablehost.setCurrentTab(0);
-                        getToolbar().setTitle("主页");
+                        getToolbar().setTitle("业务");
+                        break;
+                    case R.id.rb_task:
+                        MenuIsShow = false;
+                        mHomeTablehost.setCurrentTab(1);
+                        getToolbar().setTitle("任务");
+                        break;
+
+                    case R.id.rb_customer:
+                        MenuIsShow = false;
+                        mHomeTablehost.setCurrentTab(2);
+                        getToolbar().setTitle("客户");
                         break;
                     case R.id.rb_mine:
                         MenuIsShow = false;
-                        mHomeTablehost.setCurrentTab(1);
+                        mHomeTablehost.setCurrentTab(3);
                         getToolbar().setTitle("我的");
-                        break;
-                    case R.id.rb_beiyong:
-                        MenuIsShow = false;
-                        mHomeTablehost.setCurrentTab(2);
-                        getToolbar().setTitle("备用");
                         break;
                 }
                 supportInvalidateOptionsMenu(); //重绘制menu
@@ -109,6 +120,9 @@ public class MainActivity extends BaseActivity {
         }
         if (id == R.id.action_share) {
             opeanActivity(LoginActivity.class, "LoginDemo");
+            return true;
+        }
+        if (id == R.id.action_seach) {
             return true;
         }
         return super.onOptionsItemSelected(item);

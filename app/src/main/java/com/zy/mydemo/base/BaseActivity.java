@@ -8,10 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.zy.mydemo.R;
 import com.zy.mydemo.ui.ToolbarX;
+
+import java.security.PublicKey;
+
+import static android.view.View.GONE;
 
 /**
  * Created by  zy on 2017/6/1.
@@ -51,6 +56,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private ToolbarX mtoolbarX;
     public Context mContext;
+    private ProgressBar bar;
 
 
     @Override
@@ -111,6 +117,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private void initRootView() {
         mRlContent = (RelativeLayout) findViewById(R.id.rl_Content);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        bar = (ProgressBar) findViewById(R.id.pb_base);
     }
 
     public ToolbarX getToolbar() {
@@ -136,6 +143,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+    public void opeanActivityForResult(Class clazz, String title, int QueryCode) {
+        Intent intent = new Intent(this, clazz);
+        intent.putExtra("title", title);
+        startActivityForResult(intent, QueryCode);
+    }
+
     /**
      * 带Intent
      */
@@ -143,4 +157,30 @@ public abstract class BaseActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * 显示progress
+     */
+    public void showPro() {
+        if (bar.getVisibility() == GONE) {
+            bar.setVisibility(View.VISIBLE);
+            mRlContent.setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * 隐藏
+     */
+    public void dismissPro() {
+        if (bar.getVisibility() == View.VISIBLE) {
+            bar.setVisibility(GONE);
+            mRlContent.setVisibility(View.VISIBLE);
+        }
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        dismissPro();
+    }
 }

@@ -84,4 +84,28 @@ public abstract class BaseFragment extends Fragment {
         getActivity().startActivityForResult(intent, requestCode);
         getActivity().overridePendingTransition(R.anim.anim_in_right_left, R.anim.anim_out_right_left); //切换动画
     }
+
+
+    /**
+     * 不带参数
+     *
+     * @param clazz
+     */
+    public void opeanActivity(Class clazz) {
+        Intent intent = new Intent(mContext, clazz);
+        startActivity(intent);
+    }
+
+    public void opeanActivity(Class clazz, String title) {
+        Intent intent = new Intent(mContext, clazz);
+        intent.putExtra("title", title);
+        startActivity(intent);
+    }
+
+    /**
+     * 带Intent
+     */
+    public void opeanActivity(Intent intent) {
+        startActivity(intent);
+    }
 }

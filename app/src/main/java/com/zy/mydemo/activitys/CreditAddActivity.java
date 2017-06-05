@@ -1,12 +1,10 @@
-package com.zy.mydemo.base;
+package com.zy.mydemo.activitys;
 
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-
-import java.util.HashMap;
+import com.zy.mydemo.R;
+import com.zy.mydemo.base.BaseActivity;
 
 /**
- * Created by  zy on 2017/6/2.
+ * Created by  zy on 2017/6/5.
  * //                            _ooOoo_
  * //                           o8888888o
  * //                           88" . "88
@@ -38,28 +36,9 @@ import java.util.HashMap;
  * //                  别人笑我忒疯癫，我笑自己命太贱；
  * //                  不见满街漂亮妹，哪个归得程序员？
  */
-public class BaseViewHolder extends RecyclerView.ViewHolder {
-
-    public HashMap<Integer, View> map;
-
-
-    public BaseViewHolder(View itemView) {
-        super(itemView);
-
-        if (map == null) {
-            map = new HashMap<Integer, View>();
-        }
+public class CreditAddActivity extends BaseActivity {
+    @Override
+    public int getLayout() {
+        return R.layout.activity_creditadd;
     }
-
-
-    public <T extends View> T getView(int viewId) {
-        View view = map.get(viewId);
-        if (view == null) {
-            view = itemView.findViewById(viewId);
-            map.put(viewId, view);
-        }
-        return (T) view;
-    }
-
-
 }
