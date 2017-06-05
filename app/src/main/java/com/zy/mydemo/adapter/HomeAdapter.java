@@ -57,13 +57,6 @@ public class HomeAdapter<T> extends BaseAdapter {
     protected void bindData(BaseViewHolder holder, int position) {
         TextView tv = holder.getView(R.id.tv_item_demo);
         tv.setText(mList.get(position).toString());
-        LinearLayout root = holder.getView(R.id.ll_item_root);
-        root.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
     }
 
 

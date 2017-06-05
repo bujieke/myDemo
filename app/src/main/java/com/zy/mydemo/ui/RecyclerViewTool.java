@@ -1,21 +1,16 @@
-package com.zy.mydemo.fragments;
+package com.zy.mydemo.ui;
 
+import android.content.Context;
 import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 
 import com.zy.mydemo.R;
-import com.zy.mydemo.adapter.BeiyongAdapter;
-import com.zy.mydemo.base.BaseFragment;
-import com.zy.mydemo.ui.RecyclerViewTool;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Created by  zy on 2017/6/1.
+ * Created by  zy on 2017/6/5.
  * //                            _ooOoo_
  * //                           o8888888o
  * //                           88" . "88
@@ -47,32 +42,43 @@ import java.util.List;
  * //                  别人笑我忒疯癫，我笑自己命太贱；
  * //                  不见满街漂亮妹，哪个归得程序员？
  */
-public class BeiYongFragment extends BaseFragment {
+public class RecyclerViewTool {
+    public static int RVTYPE_GENERAL = 1; //类似于listview 的用法
+    public static int RVTYPE_GRID = 2; //GRIDVIEW 的用法
 
+    private Context mContext;
+    private RecyclerView mView;
 
-    private android.support.v7.widget.RecyclerView mRvHomeview;
-    private RecyclerView.LayoutManager layoutManager;
-    private DividerItemDecoration dividerItemDecoration;
-    private BeiyongAdapter<String> stringBeiyongAdapter;
+    public RecyclerViewTool(RecyclerView view, Context context) {
 
+        this.mContext = context;
+        this.mView = view;
 
-    @Override
-    public View getView(LayoutInflater inflater) {
-        View view = inflater.inflate(R.layout.fragment_home, null);
-        return view;
     }
 
-    @Override
-    protected void initData(View view) {
-        mRvHomeview = (RecyclerView) view.findViewById(R.id.rv_homeview);
-        RecyclerViewTool recyclerViewTool = new RecyclerViewTool(mRvHomeview, mContext);
-        recyclerViewTool.initRecyle(RecyclerViewTool.RVTYPE_GRID);
-        List<String> strings = new ArrayList<String>();
-        for (int i = 0; i < 20; i++) {
-            strings.add("备用第" + i + "项");
+    /**
+     * @param RecycleType
+     */
+    public void initRecyle(int RecycleType) {
+        RecyclerView.LayoutManager layoutManager = null;
+        switch (RecycleType) {
+            case 1:
+                layoutManager = new LinearLayoutManager(mContext);
+                mView.addItemDecoration(new DividerItemDecoration(mContext,LinearLayoutManager.VERTICAL));
+                mView.setLayoutManager(layoutManager);
+                break;
+            case 2:
+                layoutManager = new StaggeredGridLayoutManager(5,StaggeredGridLayoutManager.HORIZONTAL);
+                DividerGridItemDecoration dividerGridItemDecoration = new DividerGridItemDecoration(mContext);
+                mView.addItemDecoration(dividerGridItemDecoration);
+                mView.setLayoutManager(layoutManager);
+                break;
+
+
         }
-        stringBeiyongAdapter = new BeiyongAdapter<>(strings, R.layout.item_home);
-        mRvHomeview.setAdapter(stringBeiyongAdapter);
-    }
+//        mView.addItemDecoration(new RecyclerViewDivider(mContext, LinearLayoutManager.VERTICAL));
 
+
+
+    }
 }

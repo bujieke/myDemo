@@ -10,6 +10,7 @@ import android.widget.RadioGroup;
 import android.widget.TabHost;
 
 import com.zy.mydemo.activitys.Dialogdemo;
+import com.zy.mydemo.activitys.LoginActivity;
 import com.zy.mydemo.base.BaseActivity;
 import com.zy.mydemo.fragments.BeiYongFragment;
 import com.zy.mydemo.fragments.HomeFragment;
@@ -62,23 +63,6 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initListener() {
-//        mHomeTablehost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
-//            @Override
-//            public void onTabChanged(String s) {
-//                String simpleName = fragment[0].getSimpleName();
-//                String simpleName1 = fragment[1].getSimpleName();
-//                String simpleName2 = fragment[2].getSimpleName();
-//                if (s.equals(simpleName)) {
-//                    mRbHome.setChecked(true);
-//                }
-//                if (s.equals(simpleName1)) {
-//                    mRbMine.setChecked(true);
-//                }
-//                if (s.equals(simpleName2)) {
-//                    mRbBeiyong.setChecked(true);
-//                }
-//            }
-//        });
         mHomeRg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
@@ -121,6 +105,10 @@ public class MainActivity extends BaseActivity {
         int id = item.getItemId();
         if (id == R.id.action_godialog) {
             opeanActivity(Dialogdemo.class, "DialogDemo");
+            return true;
+        }
+        if (id == R.id.action_share) {
+            opeanActivity(LoginActivity.class, "LoginDemo");
             return true;
         }
         return super.onOptionsItemSelected(item);

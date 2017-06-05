@@ -8,4 +8,5 @@
     <color name="AppBackGround">#F5F5F5</color>
     <color name="rg_select">#FF4081</color>
     <color name="home_nomal">#E8E8E8</color>
+    <color name="transparent">#00000000</color>
 </resources>

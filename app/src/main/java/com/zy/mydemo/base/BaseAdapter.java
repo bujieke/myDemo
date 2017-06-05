@@ -43,17 +43,33 @@ import java.util.List;
 public abstract class BaseAdapter<T> extends RecyclerView.Adapter {
     public List<T> mList;
     private int LayoutId;
+    private OnItemClickLitener itemClickLitener;
+
+    public void setItemClickLitener(OnItemClickLitener itemClickLitener) {
+        this.itemClickLitener = itemClickLitener;
+    }
+
 
     public BaseAdapter(List<T> list, int LayoutId) {
         super();
         this.mList = list;
         this.LayoutId = LayoutId;
     }
-    @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof BaseViewHolder) {
 
-          bindData( (BaseViewHolder) holder,position);
+    @Override
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
+        if (holder instanceof BaseViewHolder) {
+            if (itemClickLitener != null) {
+                //设置了点击监听
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        int pos = holder.getLayoutPosition();
+                        itemClickLitener.onItemClick(holder.itemView, pos);
+                    }
+                });
+            }
+            bindData((BaseViewHolder) holder, position);
         }
     }
 
@@ -94,5 +110,14 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter {
      */
     public List<T> getList() {
         return mList;
+    }
+
+    /**
+     * 点击事件回调
+     */
+    public interface OnItemClickLitener {
+        void onItemClick(View view, int position);
+
+        //  void onItemLongClick(View view, int position);
     }
 }

@@ -3,8 +3,6 @@ package com.zy.mydemo.fragments;
 import android.graphics.Color;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +10,7 @@ import android.view.View;
 import com.zy.mydemo.R;
 import com.zy.mydemo.adapter.HomeAdapter;
 import com.zy.mydemo.base.BaseFragment;
+import com.zy.mydemo.ui.RecyclerViewTool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,8 +51,6 @@ import java.util.List;
  */
 public class HomeFragment extends BaseFragment {
     private android.support.v7.widget.RecyclerView mRvHomeview;
-    private RecyclerView.LayoutManager layoutManager;
-    private DividerItemDecoration dividerItemDecoration;
     private HomeAdapter<String> stringHomeAdapter;
     private android.support.v4.widget.SwipeRefreshLayout mSwLayout;
     private List<String> strings;
@@ -68,16 +65,16 @@ public class HomeFragment extends BaseFragment {
     protected void initData(View view) {
         mRvHomeview = (RecyclerView) view.findViewById(R.id.rv_beiyongview);
         mSwLayout = (SwipeRefreshLayout) view.findViewById(R.id.sw_layout);
-        layoutManager = new LinearLayoutManager(mContext);
-        dividerItemDecoration = new DividerItemDecoration(mContext, LinearLayoutManager.VERTICAL);
-        mRvHomeview.setLayoutManager(layoutManager);
-        mRvHomeview.addItemDecoration(dividerItemDecoration);
+        RecyclerViewTool re = new RecyclerViewTool(mRvHomeview, mContext);
+        re.initRecyle(RecyclerViewTool.RVTYPE_GENERAL);
+
         strings = new ArrayList<String>();
         for (int i = 0; i < 3; i++) {
             strings.add("初始" + i + "项");
         }
-        stringHomeAdapter = new HomeAdapter<>(strings, R.layout.item_home);
+        stringHomeAdapter = new HomeAdapter<String>(strings, R.layout.item_home);
         mRvHomeview.setAdapter(stringHomeAdapter);
+
         mSwLayout.setColorSchemeColors(Color.BLACK, Color.RED, Color.YELLOW);
         mSwLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
