@@ -9,6 +9,8 @@ import android.view.View;
 
 import com.zy.mydemo.R;
 import com.zy.mydemo.activitys.CreditqueryActivity;
+import com.zy.mydemo.activitys.EvaluateActivity;
+import com.zy.mydemo.activitys.OpenCardActivity;
 import com.zy.mydemo.adapter.BuinessAdapter;
 import com.zy.mydemo.adapter.HomeAdapter;
 import com.zy.mydemo.base.BaseAdapter;
@@ -86,11 +88,11 @@ public class BuinessFragment extends BaseFragment {
                         break;
                     case 1:
                         //开卡申请
-                        opeanActivity(CreditqueryActivity.class, "开卡申请");
+                        opeanActivity(OpenCardActivity.class, "开卡申请");
                         break;
                     case 2:
                         //车辆评估
-                        opeanActivity(CreditqueryActivity.class, "车辆评估");
+                        opeanActivity(EvaluateActivity.class, "车辆评估");
                         break;
                     case 3:
                         //汽车贷款

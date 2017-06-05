@@ -30,6 +30,10 @@
         <activity android:name=".activitys.CreditqueryActivity"></activity>
         <activity android:name=".activitys.CreditAddActivity"></activity>
         <activity android:name=".activitys.QueryActivity"></activity>
+        <activity android:name=".activitys.OpenCardActivity"></activity>
+        <activity android:name=".activitys.OpenCardAddActivity"></activity>
+        <activity android:name=".activitys.EvaluateActivity"></activity>
+        <activity android:name=".activitys.EvaluateAddActivity"></activity>
 
     </application>
 

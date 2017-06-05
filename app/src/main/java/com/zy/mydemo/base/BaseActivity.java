@@ -104,8 +104,9 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
         overridePendingTransition(R.anim.anim_in_right_left, R.anim.anim_out_right_left); //切换动画
+        super.onActivityResult(requestCode, resultCode, data);
+
     }
 
     @Override

@@ -47,6 +47,7 @@ public class MainActivity extends BaseActivity {
     private void initView() {
         fragment = new Class[]{BuinessFragment.class, TaskFragment.class, CustomerFragment.class, MineFragment.class};
         mHomeTablehost = (FragmentTabHost) findViewById(R.id.home_tablehost);
+
         mHomeRg = (RadioGroup) findViewById(R.id.home_rg);
         mRbBusiness = (RadioButton) findViewById(R.id.rb_business);
         mRbTask = (RadioButton) findViewById(R.id.rb_task);
@@ -57,6 +58,7 @@ public class MainActivity extends BaseActivity {
     private void initTableHost() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         mHomeTablehost.setup(getApplicationContext(), fragmentManager, R.id.home_fl);
+
         for (int i = 0; i < fragment.length; i++) {
             TabHost.TabSpec tabspec = mHomeTablehost.newTabSpec(fragment[i].getSimpleName())
                     .setIndicator(fragment[i].getSimpleName());
@@ -72,7 +74,6 @@ public class MainActivity extends BaseActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 switch (checkedId) {
                     case R.id.rb_business:
-
                         MenuIsShow = true;
                         mHomeTablehost.setCurrentTab(0);
                         getToolbar().setTitle("业务");
