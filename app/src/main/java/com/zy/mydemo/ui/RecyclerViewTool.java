@@ -2,12 +2,9 @@ package com.zy.mydemo.ui;
 
 import android.content.Context;
 import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-
-import com.zy.mydemo.R;
 
 /**
  * Created by  zy on 2017/6/5.
