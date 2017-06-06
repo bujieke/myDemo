@@ -1,13 +1,16 @@
-package com.zy.mydemo.activitys;
+package com.zy.mydemo.adapter;
 
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.zy.mydemo.R;
-import com.zy.mydemo.base.BaseActivity;
+import com.zy.mydemo.base.BaseAdapter;
+import com.zy.mydemo.base.BaseViewHolder;
+
+import java.util.List;
 
 /**
- * Created by  zy on 2017/6/5.
+ * Created by  zy on 2017/6/6.
  * //                            _ooOoo_
  * //                           o8888888o
  * //                           88" . "88
@@ -39,31 +42,14 @@ import com.zy.mydemo.base.BaseActivity;
  * //                  别人笑我忒疯癫，我笑自己命太贱；
  * //                  不见满街漂亮妹，哪个归得程序员？
  */
-public class EvaluateActivity extends BaseActivity {
-    @Override
-    public int getLayout() {
-        return R.layout.activity_evaluate;
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_credit, menu);
-        return true;
+public class CreaditAdapter extends BaseAdapter {
+    public CreaditAdapter(List list, int LayoutId) {
+        super(list, LayoutId);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_add) {
-            opeanActivity(EvaluateAddActivity.class, "新增评估");
-            return true;
-        }
-        if (id == R.id.action_query) {
-            //查询
-            opeanActivityForResult(QueryActivity.class, "查询评估", 3);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    protected void bindData(BaseViewHolder holder, int position) {
+        TextView view = holder.getView(R.id.tv_item_tv);
+        view.setText(mList.get(position).toString());
     }
 }

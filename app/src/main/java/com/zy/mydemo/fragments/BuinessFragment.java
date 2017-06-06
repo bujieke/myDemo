@@ -1,18 +1,13 @@
 package com.zy.mydemo.fragments;
 
-import android.graphics.Color;
-import android.os.Handler;
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 
 import com.zy.mydemo.R;
-import com.zy.mydemo.activitys.CreditqueryActivity;
-import com.zy.mydemo.activitys.EvaluateActivity;
-import com.zy.mydemo.activitys.OpenCardActivity;
+import com.zy.mydemo.activitys.BuinessPublicActivity;
 import com.zy.mydemo.adapter.BuinessAdapter;
-import com.zy.mydemo.adapter.HomeAdapter;
 import com.zy.mydemo.base.BaseAdapter;
 import com.zy.mydemo.base.BaseFragment;
 import com.zy.mydemo.ui.RecyclerViewTool;
@@ -81,24 +76,10 @@ public class BuinessFragment extends BaseFragment {
         mBuinessAdapter.setItemClickLitener(new BaseAdapter.OnItemClickLitener() {
             @Override
             public void onItemClick(View view, int position) {
-                switch (position) {
-                    case 0:
-                        //征信查询
-                        opeanActivity(CreditqueryActivity.class, "征信查询");
-                        break;
-                    case 1:
-                        //开卡申请
-                        opeanActivity(OpenCardActivity.class, "开卡申请");
-                        break;
-                    case 2:
-                        //车辆评估
-                        opeanActivity(EvaluateActivity.class, "车辆评估");
-                        break;
-                    case 3:
-                        //汽车贷款
-                        opeanActivity(CreditqueryActivity.class, "汽车贷款");
-                        break;
-                }
+                Intent intent = new Intent(mContext, BuinessPublicActivity.class);
+                intent.putExtra("type", position);
+                opeanActivity(intent);
+
             }
         });
     }

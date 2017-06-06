@@ -27,14 +27,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activitys.CreditqueryActivity"></activity>
-        <activity android:name=".activitys.CreditAddActivity"></activity>
-        <activity android:name=".activitys.QueryActivity"></activity>
-        <activity android:name=".activitys.OpenCardActivity"></activity>
-        <activity android:name=".activitys.OpenCardAddActivity"></activity>
-        <activity android:name=".activitys.EvaluateActivity"></activity>
-        <activity android:name=".activitys.EvaluateAddActivity"></activity>
-
+        <activity android:name=".activitys.CreditqueryActivity" />
+        <activity android:name=".activitys.CreditAddActivity" />
+        <activity android:name=".activitys.QueryActivity" />
+        <activity android:name=".activitys.OpenCardActivity" />
+        <activity android:name=".activitys.OpenCardAddActivity" />
+        <activity android:name=".activitys.EvaluateActivity" />
+        <activity android:name=".activitys.EvaluateAddActivity" />
+        <activity android:name=".activitys.BuinessPublicActivity"></activity>
     </application>
 
 </manifest>

@@ -1,18 +1,15 @@
-package com.zy.mydemo.activitys;
+package com.zy.mydemo.adapter;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTabHost;
-import android.widget.TabHost;
+import android.widget.TextView;
 
 import com.zy.mydemo.R;
-import com.zy.mydemo.base.BaseActivity;
-import com.zy.mydemo.fragments.Evaluate1Fragment;
-import com.zy.mydemo.fragments.Evaluate2Fragment;
+import com.zy.mydemo.base.BaseAdapter;
+import com.zy.mydemo.base.BaseViewHolder;
+
+import java.util.List;
 
 /**
- * Created by  zy on 2017/6/5.
+ * Created by  zy on 2017/6/6.
  * //                            _ooOoo_
  * //                           o8888888o
  * //                           88" . "88
@@ -44,37 +41,14 @@ import com.zy.mydemo.fragments.Evaluate2Fragment;
  * //                  别人笑我忒疯癫，我笑自己命太贱；
  * //                  不见满街漂亮妹，哪个归得程序员？
  */
-public class EvaluateAddActivity extends BaseActivity {
-    private Class[] fragments;
-    private FragmentTabHost mTbIndcate;
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initView();
+public class LoanAdapter extends BaseAdapter {
+    public LoanAdapter(List list, int LayoutId) {
+        super(list, LayoutId);
     }
 
     @Override
-    public int getLayout() {
-        return R.layout.activity_evaluateadd;
-    }
-
-
-    private void initView() {
-        fragments = new Class[]{Evaluate1Fragment.class, Evaluate2Fragment.class};
-        String[] fragmentName = new String[]{"按车架号评估", "按车型评估"};
-
-        mTbIndcate = (FragmentTabHost) findViewById(R.id.evaluateaddtabhost);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        mTbIndcate.setup(getApplicationContext(), fragmentManager, R.id.home_fl);
-
-        for (int i = 0; i < fragments.length; i++) {
-            TabHost.TabSpec tabSpec = mTbIndcate.newTabSpec(fragmentName[i]);
-            tabSpec.setIndicator(fragmentName[i]);
-            mTbIndcate.addTab(tabSpec, fragments[i], null);
-        }
-        mTbIndcate.setCurrentTab(0);
-
-
+    protected void bindData(BaseViewHolder holder, int position) {
+        TextView view = holder.getView(R.id.tv_item_tv);
+        view.setText(mList.get(position).toString());
     }
 }
