@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zy.mydemo">
 
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -16,25 +15,28 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
+            android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activitys.Dialogdemo" />
         <activity
             android:name=".activitys.LoginActivity"
-            android:label="@string/title_activity_login">
+            android:label="@string/title_activity_login"></activity>
+
+        <activity android:name=".activitys.CreditAddActivity" />
+        <activity android:name=".activitys.QueryActivity" />
+
+        <activity android:name=".activitys.OpenCardAddActivity" />
+
+        <activity android:name=".activitys.EvaluateAddActivity" />
+        <activity android:name=".activitys.BuinessPublicActivity" />
+        <activity
+            android:name=".activitys.SplashScreen"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activitys.CreditqueryActivity" />
-        <activity android:name=".activitys.CreditAddActivity" />
-        <activity android:name=".activitys.QueryActivity" />
-        <activity android:name=".activitys.OpenCardActivity" />
-        <activity android:name=".activitys.OpenCardAddActivity" />
-        <activity android:name=".activitys.EvaluateActivity" />
-        <activity android:name=".activitys.EvaluateAddActivity" />
-        <activity android:name=".activitys.BuinessPublicActivity"></activity>
     </application>
 
 </manifest>

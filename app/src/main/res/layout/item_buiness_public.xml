@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_item_root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/ll_item_root"
-    android:padding="5dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="5dp">
 
     <TextView
         android:id="@+id/tv_item_tv"
@@ -13,6 +13,5 @@
         android:background="@color/colorPrimary"
         android:gravity="center"
         android:minHeight="60dp"
-        android:text="22222"
         android:textColor="@color/AppThemeColor" />
 </LinearLayout>

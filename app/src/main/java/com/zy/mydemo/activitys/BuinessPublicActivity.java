@@ -22,9 +22,9 @@ import java.util.List;
 public class BuinessPublicActivity extends BaseActivity {
     private int activitype = -1;
     private ToolbarX toolbar;
-    private Class AddClass;
-    private String opeanStr;
-    private String queryTitle;
+    private Class AddClass; // 打开页面的class
+    private String opeanStr;// 打开页面标题
+    private String queryTitle; //查询界面标题
     private RecyclerView mRvBuinessPublic;
     private BaseAdapter mAdapter;
     private List<String> mList;
@@ -45,13 +45,10 @@ public class BuinessPublicActivity extends BaseActivity {
         if (activitype != -1) {
             init(activitype);
         }
-
-
     }
 
     private void init(int activitype) {
         mList = new ArrayList<>();
-
         switch (activitype) {
             case 0:
                 //征信查询
@@ -68,7 +65,6 @@ public class BuinessPublicActivity extends BaseActivity {
                 opeanStr = "新增开卡";
                 queryTitle = "开卡查询";
                 mAdapter = new OpenCardAdapter(mList, R.layout.item_buiness_public);
-
                 break;
             case 2:
                 //车辆评估
@@ -77,7 +73,6 @@ public class BuinessPublicActivity extends BaseActivity {
                 opeanStr = "新增评估";
                 queryTitle = "评估查询";
                 mAdapter = new EvaluateAdapter(mList, R.layout.item_buiness_public);
-
                 break;
             case 3:
                 //汽车贷款
@@ -89,7 +84,6 @@ public class BuinessPublicActivity extends BaseActivity {
                 break;
         }
         mRvBuinessPublic.setAdapter(mAdapter);
-
     }
 
 

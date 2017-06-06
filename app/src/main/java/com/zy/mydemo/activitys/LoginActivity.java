@@ -56,7 +56,9 @@ public class LoginActivity extends BaseActivity {
         return R.layout.activity_login;
     }
 
-
+    /**
+     * 验证登录
+     */
     private void attemptLogin() {
         String account = mAccountView.getText().toString();
         String password = mPasswordView.getText().toString();

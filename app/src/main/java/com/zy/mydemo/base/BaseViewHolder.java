@@ -39,10 +39,7 @@ import java.util.HashMap;
  * //                  不见满街漂亮妹，哪个归得程序员？
  */
 public class BaseViewHolder extends RecyclerView.ViewHolder {
-
     public HashMap<Integer, View> map;
-
-
     public BaseViewHolder(View itemView) {
         super(itemView);
 
@@ -50,8 +47,6 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
             map = new HashMap<Integer, View>();
         }
     }
-
-
     public <T extends View> T getView(int viewId) {
         View view = map.get(viewId);
         if (view == null) {
@@ -60,6 +55,4 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
         }
         return (T) view;
     }
-
-
 }
