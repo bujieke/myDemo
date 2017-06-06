@@ -15,7 +15,9 @@
         android:id="@+id/email_login_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
         android:orientation="vertical">
 
         <android.support.design.widget.TextInputLayout
@@ -51,14 +53,25 @@
 
         </android.support.design.widget.TextInputLayout>
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/rb_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="记住密码" />
+
+        </RelativeLayout>
+
         <Button
-            android:id="@+id/email_sign_in_button"
-            style="?android:textAppearanceSmall"
+            android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/action_sign_in"
-            android:textStyle="bold" />
+            android:text="@string/action_sign_in" />
 
     </LinearLayout>
 
