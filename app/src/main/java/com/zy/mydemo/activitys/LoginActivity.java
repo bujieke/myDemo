@@ -5,7 +5,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
-import android.widget.CompoundButton;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.zy.mydemo.R;
 import com.zy.mydemo.base.BaseActivity;
 import com.zy.mydemo.present.LoginPresent;
+import com.zy.mydemo.utils.KeyBoardUtils;
+import com.zy.mydemo.utils.LogUtils;
 import com.zy.mydemo.view.ILoginView;
 
 /**
@@ -22,10 +24,8 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     private EditText mAccountView;
     private EditText mPasswordView;
     private LoginPresent mPresent;
-    private RadioButton mRbSave;
+    private CheckBox mCbSave;
     private Button mBtnLogin;
-    private String account;
-    private String pwd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,34 +35,30 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     }
 
     private void init() {
-
         mPresent = new LoginPresent(mContext, this);
         mAccountView = (EditText) findViewById(R.id.account);
         mPasswordView = (EditText) findViewById(R.id.password);
-        mRbSave = (RadioButton) findViewById(R.id.rb_save);
+        mCbSave = (CheckBox) findViewById(R.id.rb_save);
         mBtnLogin = (Button) findViewById(R.id.btn_login);
-        account = mAccountView.getText().toString();
-        pwd = mPasswordView.getText().toString();
-
-
 
         mBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mPresent.confirmation(account, pwd);
+
+                mPresent.confirmation(mAccountView.getText().toString(), mPasswordView.getText().toString(), mCbSave.isChecked());
             }
         });
-
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    mPresent.confirmation(account, pwd);
+                    mPresent.confirmation(mAccountView.getText().toString(), mPasswordView.getText().toString(), mCbSave.isChecked());
                     return true;
                 }
                 return false;
             }
         });
+        mPresent.getSavaData();
     }
 
     @Override
@@ -81,59 +77,22 @@ public class LoginActivity extends BaseActivity implements ILoginView {
         }
     }
 
+    @Override
+    public void getSaveData(String account, String pwd) {
+        LogUtils.LogD(account);
+        LogUtils.LogD(pwd);
+        mCbSave.setChecked(true);
+        mAccountView.setText(account);
+        mPasswordView.setText(pwd);
 
-//    /**
-//     * 验证登录
-//     */
-//    private void attemptLogin() {
-//        String account = mAccountView.getText().toString();
-//        String password = mPasswordView.getText().toString();
-//        boolean cancel = false;
-//        View focusView = null;
-//        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-//            focusView = mPasswordView;
-//            cancel = true;
-//        }
-//        if (TextUtils.isEmpty(account)) {
-//            focusView = mAccountView;
-//            cancel = true;
-//        }
-//
-//        if (cancel) {
-//            focusView.requestFocus();
-//        } else {
-//            showPro();
-//            login(account, password);
-//        }
-//    }
-//
-//    /*
-//     * 登录方法
-//     *
-//     * @param account
-//     * @param password
-//     */
-//    private void login(String account, String password) {
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                opeanActivity(MainActivity.class, "主页");
-//                finish();
-//            }
-//        }, 3000);
-//
-//    }
-//
-//
-//    /**
-//     * 密码验证
-//     *
-//     * @param password
-//     * @return
-//     */
-//    private boolean isPasswordValid(String password) {
-//        return password.length() > 4;
-//    }
+    }
+
+    @Override
+    public void LoginView() {
+        KeyBoardUtils.closeKeybord(mPasswordView, mContext);
+        showPro();
+    }
+
 
 }
 

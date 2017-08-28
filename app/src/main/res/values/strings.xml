@@ -5,6 +5,7 @@
     <string name="homePage">主页</string>
     <string name="action_share">分享</string>
     <string name="action_seach">查询</string>
+    <string name="action_vitamio">视屏播放</string>
     <string name="go_dialogDemo">dialogDia</string>
     <string name="action_godialog">dialog示例</string>
     <string name="title_activity_login">登录页面</string>

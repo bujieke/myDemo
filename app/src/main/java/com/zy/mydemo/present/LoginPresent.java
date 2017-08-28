@@ -1,8 +1,14 @@
 package com.zy.mydemo.present;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
 
+import com.zy.mydemo.MainActivity;
+import com.zy.mydemo.utils.LogUtils;
+import com.zy.mydemo.utils.SpUtils;
 import com.zy.mydemo.view.ILoginView;
 
 /**
@@ -41,6 +47,7 @@ import com.zy.mydemo.view.ILoginView;
 public class LoginPresent {
     private Context mContext;
     private ILoginView mView;
+    private boolean savePwd;
 
     public LoginPresent(Context context, ILoginView view) {
         this.mContext = context;
@@ -53,7 +60,8 @@ public class LoginPresent {
      * @param account
      * @param pwd
      */
-    public void confirmation(String account, String pwd) {
+    public void confirmation(String account, String pwd, boolean SavePwd) {
+
 
         if (TextUtils.isEmpty(account)) {
             mView.setFacus(0);
@@ -65,6 +73,44 @@ public class LoginPresent {
         }
 
 
+        this.savePwd = SavePwd;
+        Login(account, pwd);
+    }
 
+    private void Login(String account, String pwd) {
+
+
+        if (account.length() > 4 && pwd.length() > 4) {
+            mView.LoginView();
+            //存储账号密码
+            if (savePwd) {
+                SpUtils.put(mContext, "account", account);
+                SpUtils.put(mContext, "pwd", pwd);
+                SpUtils.put(mContext, "save", savePwd);
+
+            } else {
+                SpUtils.put(mContext, "save", savePwd);
+            }
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(mContext, MainActivity.class);
+                    mView.opeanActivity(intent);
+                }
+            }, 3000);
+
+
+        }
+    }
+
+    public void getSavaData() {
+        savePwd = (boolean) SpUtils.get(mContext, "save", false);
+//        LogUtils.LogD(savePwd + "");
+//        LogUtils.LogD((String) SpUtils.get(mContext, "account", null));
+//        LogUtils.LogD((String) SpUtils.get(mContext, "pwd", null));
+
+        if (savePwd) {
+            mView.getSaveData((String) SpUtils.get(mContext, "account", ""), (String) SpUtils.get(mContext, "pwd", ""));
+        }
     }
 }

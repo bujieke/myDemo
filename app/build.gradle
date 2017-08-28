@@ -23,4 +23,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile project(':dialogutils')
+    compile 'com.ashokvarma.android:bottom-navigation-bar:0.9.5'
+    compile project(':vitamios')
 }

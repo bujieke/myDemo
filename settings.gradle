@@ -1,1 +1,1 @@
-include ':app', ':dialogutils'
+include ':app', ':dialogutils', ':vitamios'

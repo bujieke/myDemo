@@ -22,31 +22,29 @@
             android:text="@string/empty_text"
             android:textColor="@color/TextColor_Red"
             android:textSize="@dimen/txt_m" />
-
         <RelativeLayout
             android:id="@+id/toolbar_customView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"></RelativeLayout>
     </android.support.v7.widget.Toolbar>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-
-
-        <RelativeLayout
-            android:id="@+id/rl_Content"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/AppBackGround" />
         <ProgressBar
-
             android:id="@+id/pb_base"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:visibility="gone" />
+
+        <RelativeLayout
+            android:id="@+id/rl_Content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/AppBackGround"
+            android:layout_below="@+id/pb_base"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
     </RelativeLayout>
 </LinearLayout>

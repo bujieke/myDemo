@@ -1,9 +1,9 @@
-package com.zy.mydemo.view;
+package com.zy.mydemo.utils;
 
-import android.content.Intent;
+import android.util.Log;
 
 /**
- * Created by  zy on 2017/6/6.
+ * Created by  zy on 2017/6/7.
  * //                            _ooOoo_
  * //                           o8888888o
  * //                           88" . "88
@@ -35,12 +35,13 @@ import android.content.Intent;
  * //                  别人笑我忒疯癫，我笑自己命太贱；
  * //                  不见满街漂亮妹，哪个归得程序员？
  */
-public interface ILoginView {
-    void setFacus(int facus);
+public class LogUtils {
+    public static String DEBUG = "debug";
 
-    void opeanActivity(Intent intent);
+    public static void LogD(String msg) {
+        Log.e(DEBUG, "-------------------------------------------\n");
+        Log.e(DEBUG, msg + "\n");
+        Log.e(DEBUG, "---------------------------------------------");
+    }
 
-    void getSaveData(String account, String pwd);
-
-    void LoginView();
 }

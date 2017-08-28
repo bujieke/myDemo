@@ -66,7 +66,7 @@ public class EvaluateAddActivity extends BaseActivity {
 
         mTbIndcate = (FragmentTabHost) findViewById(R.id.evaluateaddtabhost);
         FragmentManager fragmentManager = getSupportFragmentManager();
-        mTbIndcate.setup(getApplicationContext(), fragmentManager, R.id.home_fl);
+//        mTbIndcate.setup(getApplicationContext(), fragmentManager, R.id.home_fl);
 
         for (int i = 0; i < fragments.length; i++) {
             TabHost.TabSpec tabSpec = mTbIndcate.newTabSpec(fragmentName[i]);

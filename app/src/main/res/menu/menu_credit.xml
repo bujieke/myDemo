@@ -4,14 +4,14 @@
     tools:context="com.zy.mydemo.MainActivity">
     <item
         android:id="@+id/action_add"
-        android:icon="@drawable/ic_action_add"
+        android:icon="@drawable/ic_action_name"
         android:orderInCategory="100"
         android:title="新增"
-        app:showAsAction="never" />
+        app:showAsAction="always" />
     <item
         android:id="@+id/action_query"
         android:icon="@android:drawable/ic_menu_search"
         android:orderInCategory="0"
         android:title="查询"
-        app:showAsAction="never" />
+        app:showAsAction="always" />
 </menu>

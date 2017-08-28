@@ -1,6 +1,8 @@
-package com.zy.mydemo.view;
+package com.zy.mydemo.utils.utils;
 
-import android.content.Intent;
+import android.content.Context;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
 /**
  * Created by  zy on 2017/6/6.
@@ -35,12 +37,38 @@ import android.content.Intent;
  * //                  别人笑我忒疯癫，我笑自己命太贱；
  * //                  不见满街漂亮妹，哪个归得程序员？
  */
-public interface ILoginView {
-    void setFacus(int facus);
+public class KeyBoardUtils {
 
-    void opeanActivity(Intent intent);
+    /**
+     * 打卡软键盘
+     *
+     * @param mEditText
+     *            输入框
+     * @param mContext
+     *            上下文
+     */
+    public static void openKeybord(EditText mEditText, Context mContext)
+    {
+        InputMethodManager imm = (InputMethodManager) mContext
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(mEditText, InputMethodManager.RESULT_SHOWN);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,
+                InputMethodManager.HIDE_IMPLICIT_ONLY);
+    }
 
-    void getSaveData(String account, String pwd);
+    /**
+     * 关闭软键盘
+     *
+     * @param mEditText
+     *            输入框
+     * @param mContext
+     *            上下文
+     */
+    public static void closeKeybord(EditText mEditText, Context mContext)
+    {
+        InputMethodManager imm = (InputMethodManager) mContext
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
 
-    void LoginView();
+        imm.hideSoftInputFromWindow(mEditText.getWindowToken(), 0);
+    }
 }

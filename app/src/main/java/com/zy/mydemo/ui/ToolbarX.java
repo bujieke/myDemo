@@ -1,10 +1,12 @@
 package com.zy.mydemo.ui;
 
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextPaint;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -50,7 +52,9 @@ public class ToolbarX {
     private ActionBar mActionBar;
     private final TextView cententTitle;
     private boolean ActionBarTitleIsShow = false;//是使用自定义居中的title 还是actionbar的title  居左
+    private boolean RightImageIsShow = false; //右上角是否显示
     private RelativeLayout mRl_customView;
+
 
     public ToolbarX(Toolbar mToolbar, final AppCompatActivity mApp) {
         this.mToolbar = mToolbar;
@@ -64,11 +68,12 @@ public class ToolbarX {
                 mActivity.finish();
             }
         });
+
         cententTitle = (TextView) mToolbar.findViewById(R.id.toolbar_centertitle);
         TextPaint tp = cententTitle.getPaint(); //加粗
         tp.setFakeBoldText(true);
         mRl_customView = (RelativeLayout) mToolbar.findViewById(R.id.toolbar_customView);
-     
+
     }
 
     public ToolbarX setTitle(String title) {
@@ -81,6 +86,11 @@ public class ToolbarX {
 
         }
 
+        return this;
+    }
+
+    public ToolbarX setNavigationIcon(Drawable drawable) {
+        mToolbar.setNavigationIcon(drawable);
         return this;
     }
 
