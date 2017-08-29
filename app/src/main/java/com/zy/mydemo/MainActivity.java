@@ -11,6 +11,7 @@ import android.widget.RadioGroup;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.zy.mydemo.activitys.Dialogdemo;
 import com.zy.mydemo.activitys.LoginActivity;
+import com.zy.mydemo.activitys.QueryActivity;
 import com.zy.mydemo.activitys.VideoActivity;
 import com.zy.mydemo.base.BaseActivity;
 import com.zy.mydemo.utils.LogUtils;
@@ -66,8 +67,8 @@ public class MainActivity extends BaseActivity {
             opeanActivity(Dialogdemo.class, "DialogDemo");
             return true;
         }
-        if (id == R.id.action_share) {
-            opeanActivity(LoginActivity.class, "LoginDemo");
+        if (id == R.id.action_seach) {
+            opeanActivity(QueryActivity.class, "查询");
             return true;
         }
         if (id == R.id.action_vitamio) {

@@ -87,7 +87,6 @@ public class LoginPresent {
                 SpUtils.put(mContext, "account", account);
                 SpUtils.put(mContext, "pwd", pwd);
                 SpUtils.put(mContext, "save", savePwd);
-
             } else {
                 SpUtils.put(mContext, "save", savePwd);
             }
@@ -105,10 +104,6 @@ public class LoginPresent {
 
     public void getSavaData() {
         savePwd = (boolean) SpUtils.get(mContext, "save", false);
-//        LogUtils.LogD(savePwd + "");
-//        LogUtils.LogD((String) SpUtils.get(mContext, "account", null));
-//        LogUtils.LogD((String) SpUtils.get(mContext, "pwd", null));
-
         if (savePwd) {
             mView.getSaveData((String) SpUtils.get(mContext, "account", ""), (String) SpUtils.get(mContext, "pwd", ""));
         }
