@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -29,7 +30,6 @@ public class VideoPlayActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);//设置全屏
         setContentView(R.layout.activity_video_play);
         Intent intent = getIntent();
-
         path = intent.getStringExtra("path");
         if (!TextUtils.isEmpty(path)) {
             initView();
@@ -41,7 +41,7 @@ public class VideoPlayActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
 
-        if(getRequestedOrientation()!= ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE){
+        if (getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
         super.onResume();
@@ -54,10 +54,26 @@ public class VideoPlayActivity extends AppCompatActivity {
         mVideoView = (VideoView) findViewById(R.id.surface_view);
         mVideoView.setVideoPath(path);//设置播放地址
         mMediaController = new MediaController(this);//实例化控制器
-        mMediaController.show(5000);//控制器显示5s后自动隐藏
+        mVideoView.setBufferSize(10240);
+//        mMediaController.show(5000);//控制器显示5s后自动隐藏
+        mVideoView.setVideoQuality(MediaPlayer.VIDEOQUALITY_MEDIUM);
         mVideoView.setMediaController(mMediaController);//绑定控制器
-        mVideoView.setVideoQuality(MediaPlayer.VIDEOQUALITY_HIGH);//设置播放画质 高画质
+//        mVideoView.setVideoQuality(MediaPlayer.VIDEOQUALITY_HIGH);//设置播放画质 高画质
         mVideoView.requestFocus();//取得焦点
+        mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setPlaybackSpeed(1.0f);
+            }
+        });
+
+        mVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+              mVideoView.stopPlayback();
+                finish();
+            }
+        });
     }
 
 

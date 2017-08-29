@@ -150,6 +150,26 @@ public class VideoActivity extends BaseActivity {
             getVideoList();
             return true;
         }
+        if (id == R.id.action_live_cctv1) {
+
+            Intent intent = new Intent(mContext, VideoPlayActivity.class);
+
+            intent.putExtra("path", "http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8");
+            opeanActivity(intent);
+            return true;
+        }
+        if (id == R.id.action_live_cctv6) {
+            Intent intent = new Intent(mContext, VideoPlayActivity.class);
+            intent.putExtra("path", "http://ivi.bupt.edu.cn/hls/cctv6hd.m3u8");
+            opeanActivity(intent);
+            return true;
+        }
+        if (id == R.id.action_live_hkv) {
+            Intent intent = new Intent(mContext, VideoPlayActivity.class);
+            intent.putExtra("path", "rtmp://live.hkstv.hk.lxdns.com/live/hks");
+            opeanActivity(intent);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
 
     }

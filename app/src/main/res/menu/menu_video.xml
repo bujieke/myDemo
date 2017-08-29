@@ -4,9 +4,24 @@
     tools:context="com.zy.mydemo.activitys.VideoActivity">
     <item
         android:id="@+id/action_searchvideo"
+        android:icon="@android:drawable/ic_menu_search"
         android:orderInCategory="100"
         android:title="@string/action_seach"
-        android:icon="@android:drawable/ic_menu_search"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/action_live_cctv1"
+        android:orderInCategory="100"
+        android:title="直播中央1套"
+        app:showAsAction="never" />
 
+    <item
+        android:id="@+id/action_live_cctv6"
+        android:orderInCategory="100"
+        android:title="直播中央6套"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_live_hkv"
+        android:orderInCategory="100"
+        android:title="香港卫视"
+        app:showAsAction="never" />
 </menu>
