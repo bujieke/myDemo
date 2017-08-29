@@ -27,7 +27,7 @@ public class VideoActivity extends BaseActivity {
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE };
+            Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     private Button mBtnGetvideo;
     private TextView mText;
@@ -49,7 +49,7 @@ public class VideoActivity extends BaseActivity {
             public void onClick(View view) {
                 //checkPermission
                 checkPermission();
-                getVideo();
+
             }
 
 
@@ -65,9 +65,11 @@ public class VideoActivity extends BaseActivity {
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
+            getVideo();
+
         } else {
-//           ActivityCompat.requestPermissions(this,
-//            new String[]{Manifest.permission.READ_CONTACTS},MY_PERMISSIONS_REQUEST_READ_CONTACTS);
+            ActivityCompat.requestPermissions(this,
+                    PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
         }
     }
 
