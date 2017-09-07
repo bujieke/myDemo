@@ -54,7 +54,8 @@ public class VideoPlayActivity extends AppCompatActivity {
         mVideoView = (VideoView) findViewById(R.id.surface_view);
         mVideoView.setVideoPath(path);//设置播放地址
         mMediaController = new MediaController(this);//实例化控制器
-        mVideoView.setBufferSize(10240);
+        mVideoView.setBufferSize(50000);
+        mVideoView.setHardwareDecoder(true);
 //        mMediaController.show(5000);//控制器显示5s后自动隐藏
         mVideoView.setVideoQuality(MediaPlayer.VIDEOQUALITY_MEDIUM);
         mVideoView.setMediaController(mMediaController);//绑定控制器
@@ -70,7 +71,7 @@ public class VideoPlayActivity extends AppCompatActivity {
         mVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
-              mVideoView.stopPlayback();
+                mVideoView.stopPlayback();
                 finish();
             }
         });

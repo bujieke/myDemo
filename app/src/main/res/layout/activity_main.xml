@@ -5,11 +5,17 @@
     android:background="@color/AppBackGround"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/callphone"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="这就是个主页"
         android:layout_gravity="center"
-        />
+        android:text="呼叫" />
+
 
 </LinearLayout>
